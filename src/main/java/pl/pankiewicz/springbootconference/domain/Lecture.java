@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class Lecture implements ConferencePlan {
+public class Lecture {
 
     private final int _PARTICIPANT = 5;
 
@@ -34,65 +34,7 @@ public class Lecture implements ConferencePlan {
         this.title = title;
         this.expert = expert;
         this.participants = new ArrayList<Long>();
-        this.endTime = startTime.plusMinutes(duration.toMinutes());
+
     }
 
-    public int get_PARTICIPANT() {
-        return _PARTICIPANT;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public Duration getDuration() {
-        return duration;
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    public String getExpert() {
-        return expert;
-    }
-
-    public List<Long> getParticipants() {
-        return participants;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    @Override
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public int getReservedPaths() {
-        return participants.size();
-    }
-
-    public boolean addNewParticipant() {
-        return participants.add(id);
-    }
-
-    public boolean checkFreeSlots() {
-        return get_PARTICIPANT() > getReservedPaths();
-    }
-
-    public boolean avoidSameTimeReservation(Optional<Lecture> lecture) {
-        return lecture.map(optionalLecture ->
-                (this.getDate().isEqual(optionalLecture.getDate())) &&
-                        (this.getStartTime().isBefore(optionalLecture.getEndTime())) &&
-                        (this.getEndTime().isAfter(optionalLecture.getStartTime()))).orElse(false);
-    }
 }
