@@ -10,5 +10,4 @@ public class SchedulerService {
     @Autowired
     private SchedulerRepository schedulerRepository;
 
-
 }
