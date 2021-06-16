@@ -12,10 +12,6 @@ public class Conference {
     private Long id;
     private List<Lecture> lecture;
 
-    public Conference(Long id) {
-        this.id = id;
-    }
-
     public Conference() {
     }
 
@@ -31,7 +27,8 @@ public class Conference {
     }
 
     @OneToMany(
-            mappedBy = "lecture",
+            targetEntity = Lecture.class,
+            mappedBy = "Lecture",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )

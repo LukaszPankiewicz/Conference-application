@@ -1,26 +1,50 @@
 package pl.pankiewicz.springbootconference.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
 @Entity
-@AllArgsConstructor
-@Getter
 @Table(name = "USERS")
 public class User {
+
+    private Long id;
+    private String username;
+    private String email;
+
+    public User(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
+    public User() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
-    private Long id;
+    public Long getId() {
+        return id;
+    }
 
     @Column(name = "USERNAME")
-    private String username;
+    public String getUsername() {
+        return username;
+    }
 
     @Column(name = "EMAIL")
-    private String email;
+    public String getEmail() {
+        return email;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

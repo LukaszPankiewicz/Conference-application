@@ -13,8 +13,7 @@ public class Reservation {
     private User user;
     private LecturePath lecturePath;
 
-    public Reservation(Long id, User user, LecturePath lecturePath) {
-        this.id = id;
+    public Reservation(User user, LecturePath lecturePath) {
         this.user = user;
         this.lecturePath = lecturePath;
     }

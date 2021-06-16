@@ -20,8 +20,11 @@ public class Lecture {
 
     public Lecture() {
     }
-
-    public Lecture(Long id, LocalDate date, LocalTime startTime, LocalTime endTime) {
+    public Lecture(LocalDate date, LocalTime startTime, LocalTime endTime, String title) {
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.title = title;
     }
 
     @Id
@@ -55,7 +58,8 @@ public class Lecture {
     }
 
     @OneToMany(
-            mappedBy = "lecture",
+            targetEntity = LecturePath.class,
+            mappedBy = "LecturePath",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )

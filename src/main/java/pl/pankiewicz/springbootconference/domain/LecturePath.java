@@ -17,6 +17,10 @@ public class LecturePath {
     public LecturePath() {
     }
 
+    public LecturePath(String title) {
+        this.title = title;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull

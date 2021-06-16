@@ -18,7 +18,4 @@ public class LectureDto {
     private LocalTime endTime;
     private String title;
 
-
-    public LectureDto(Long id, LocalDate date, LocalTime startTime, LocalTime endTime) {
-    }
 }
