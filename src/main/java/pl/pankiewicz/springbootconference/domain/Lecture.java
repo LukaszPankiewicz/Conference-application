@@ -1,40 +1,60 @@
 package pl.pankiewicz.springbootconference.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import com.sun.istack.NotNull;
 
-import java.time.Duration;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-
+@Entity
+@Table(name = "LECTURE")
 public class Lecture {
 
-    private final int _PARTICIPANT = 5;
-
+    @Id
+    @GeneratedValue
+    @NotNull
+    @Column(name = "ID", unique = true)
     private Long id;
+
+    @NotNull
+    @Column(name = "DATE")
     private LocalDate date;
+
+    @NotNull
+    @Column(name = "STARTTIME")
     private LocalTime startTime;
+
+    @NotNull
+    @Column(name = "ENDTIME")
     private LocalTime endTime;
-    private Duration duration;
+
+    @Column(name = "TITLE")
     private String title;
-    private String expert;
-    private List<Long> participants;
 
-    public Lecture(Long id, LocalDate date, LocalTime time, Duration duration, String title, String expert) {
-        super();
-        this.id = id;
-        this.date = date;
-        this.startTime = time;
-        this.duration = duration;
-        this.title = title;
-        this.expert = expert;
-        this.participants = new ArrayList<Long>();
 
+    public Lecture() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
 }
