@@ -1,22 +1,25 @@
 package pl.pankiewicz.springbootconference.domain;
 
+import com.sun.istack.NotNull;
 import lombok.*;
+import org.springframework.lang.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@Table(name = "USERS")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
+    @Column(name = "ID", unique = true)
     private Long id;
+
+    @Column(name = "USERNAME")
     private String username;
+
+    @Column(name = "EMAIL")
     private String email;
 
 }
