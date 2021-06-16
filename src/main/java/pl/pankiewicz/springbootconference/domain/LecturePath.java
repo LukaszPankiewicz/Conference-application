@@ -1,6 +1,5 @@
 package pl.pankiewicz.springbootconference.domain;
 
-import com.sun.istack.NotNull;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -16,11 +15,6 @@ public class LecturePath {
     private Lecture lecture;
 
     public LecturePath() {
-    }
-
-    public LecturePath(Long id, String title) {
-        this.id = id;
-        this.title = title;
     }
 
     @Id

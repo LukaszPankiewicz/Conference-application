@@ -31,7 +31,6 @@ public class Conference {
     }
 
     @OneToMany(
-            targetEntity = Lecture.class,
             mappedBy = "lecture",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY

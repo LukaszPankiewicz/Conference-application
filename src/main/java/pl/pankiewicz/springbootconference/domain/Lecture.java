@@ -18,16 +18,6 @@ public class Lecture {
     private String title;
     private List<LecturePath> lecturePaths;
 
-    public Lecture(LocalDate date, LocalTime startTime, LocalTime endTime) {
-    }
-
-    public Lecture(LocalDate date, LocalTime startTime, LocalTime endTime, String title) {
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.title = title;
-    }
-
     public Lecture() {
     }
 
@@ -65,7 +55,6 @@ public class Lecture {
     }
 
     @OneToMany(
-            targetEntity = LecturePath.class,
             mappedBy = "lecture",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
