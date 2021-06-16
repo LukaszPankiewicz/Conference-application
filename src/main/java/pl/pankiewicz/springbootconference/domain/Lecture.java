@@ -1,13 +1,10 @@
 package pl.pankiewicz.springbootconference.domain;
 
-import com.sun.istack.NotNull;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -71,6 +68,10 @@ public class Lecture {
     )
     public List<LecturePath> getLecturePaths() {
         return lecturePaths;
+    }
+
+    public void setLecturePaths(List<LecturePath> lecturePaths) {
+        this.lecturePaths = lecturePaths;
     }
 
     public void setId(Long id) {

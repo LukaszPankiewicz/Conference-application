@@ -1,7 +1,5 @@
 package pl.pankiewicz.springbootconference.domain;
 
-import com.sun.istack.NotNull;
-import lombok.*;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
