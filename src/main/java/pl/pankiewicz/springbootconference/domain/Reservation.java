@@ -23,9 +23,8 @@ public class Reservation {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
-    @Column(name = "ID", unique = true)
     public Long getId() {
         return id;
     }

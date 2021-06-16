@@ -12,7 +12,6 @@ public class UserController {
 
     private final DbService dbService;
 
-
     @GetMapping(value = "/users")
     public void getUsers() {
 
@@ -20,7 +19,6 @@ public class UserController {
 
     @GetMapping(value = "/users/{userId}")
     public void getUser(@PathVariable Long userId) throws UserNotFoundException {
-
 
     }
 

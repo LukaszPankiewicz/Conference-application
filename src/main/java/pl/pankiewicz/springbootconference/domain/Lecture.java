@@ -18,21 +18,25 @@ public class Lecture {
     private String title;
     private List<LecturePath> lecturePaths;
 
-    public Lecture(Long id, LocalDate date, LocalTime startTime, LocalTime endTime) {
+    public Lecture(LocalDate date, LocalTime startTime, LocalTime endTime) {
     }
 
-    public Lecture(Long id, LocalDate date, LocalTime startTime, LocalTime endTime, String title) {
-        this.id = id;
+    public Lecture(LocalDate date, LocalTime startTime, LocalTime endTime, String title) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.title = title;
     }
 
+    public Lecture() {
+    }
+
+    public Lecture(Long id, LocalDate date, LocalTime startTime, LocalTime endTime) {
+    }
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
-    @Column(name = "ID", unique = true)
     public Long getId() {
         return id;
     }

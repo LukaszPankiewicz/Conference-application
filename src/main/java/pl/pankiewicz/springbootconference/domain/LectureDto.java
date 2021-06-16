@@ -20,6 +20,5 @@ public class LectureDto {
 
 
     public LectureDto(Long id, LocalDate date, LocalTime startTime, LocalTime endTime) {
-
     }
 }
