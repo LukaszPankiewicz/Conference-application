@@ -17,6 +17,7 @@ public class Lecture {
     private LocalTime endTime;
     private String title;
     private List<LecturePath> lecturePaths;
+    private Conference conference;
 
     public Lecture() {
     }
@@ -59,12 +60,22 @@ public class Lecture {
 
     @OneToMany(
             targetEntity = LecturePath.class,
-            mappedBy = "LecturePath",
+            mappedBy = "lecture",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     public List<LecturePath> getLecturePaths() {
         return lecturePaths;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CONFERENCE_ID")
+    public Conference getConference() {
+        return conference;
+    }
+
+    public void setConference(Conference conference) {
+        this.conference = conference;
     }
 
     public void setLecturePaths(List<LecturePath> lecturePaths) {

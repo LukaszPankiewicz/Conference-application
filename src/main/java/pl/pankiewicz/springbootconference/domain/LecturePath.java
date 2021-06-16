@@ -35,7 +35,7 @@ public class LecturePath {
 
     @OneToMany(
             targetEntity = Reservation.class,
-            mappedBy = "lecture",
+            mappedBy = "lecturePath",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
