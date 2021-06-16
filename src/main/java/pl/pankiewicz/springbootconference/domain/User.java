@@ -1,10 +1,14 @@
 package pl.pankiewicz.springbootconference.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
+@Getter
 @Table(name = "USERS")
 public class User {
 

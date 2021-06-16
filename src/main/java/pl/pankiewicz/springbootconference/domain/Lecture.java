@@ -18,7 +18,7 @@ public class Lecture {
     private String title;
     private List<LecturePath> lecturePaths;
 
-    public Lecture() {
+    public Lecture(Long id, LocalDate date, LocalTime startTime, LocalTime endTime) {
     }
 
     public Lecture(Long id, LocalDate date, LocalTime startTime, LocalTime endTime, String title) {
