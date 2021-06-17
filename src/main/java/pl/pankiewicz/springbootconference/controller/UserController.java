@@ -13,7 +13,6 @@ import pl.pankiewicz.springbootconference.service.DbService;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/v1/user")
 @RequiredArgsConstructor
@@ -42,7 +41,7 @@ public class UserController {
         LecturePath lecturePath = reservation.getLecturePath();
         return
 
-        //metoda musi zwrócić wyżej wypisany lecturePath. -> jak ?
+        //metoda musi zwrócić wyżej wypisany lecturePath. Brak pomysłu
 
     }
 
@@ -57,7 +56,7 @@ public class UserController {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         LecturePath lecturePath = lecturePathRepository.findByTitle(title);
         List<Reservation> reservations = lecturePath.getReservation();
-        reservations.add(user) //błąd, bliźniaczy kod zaczyna się od 78 linii.
+        reservations.add(user) //błąd, niezgodność typów
     }
 
     @PutMapping(value = "/user")
@@ -81,7 +80,7 @@ public class UserController {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         LecturePath lecturePath = lecturePathRepository.findByTitle(title);
         List<Reservation> reservations = lecturePath.getReservation();
-        reservations.remove(user);
+        reservations.remove(user); //niezgodność typów
 
     }
 }

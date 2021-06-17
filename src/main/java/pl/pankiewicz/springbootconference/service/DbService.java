@@ -25,7 +25,9 @@ public class DbService {
         return repository.save(user);
     }
 
+    /*
     public void deleteUser(final Long id) {
         repository.deleteById(id);
     }
+     */
 }

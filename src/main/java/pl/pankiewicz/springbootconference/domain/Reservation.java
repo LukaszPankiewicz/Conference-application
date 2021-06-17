@@ -3,7 +3,6 @@ package pl.pankiewicz.springbootconference.domain;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "RESERVATION")
@@ -12,11 +11,6 @@ public class Reservation {
     private Long id;
     private User user;
     private LecturePath lecturePath;
-
-    public Reservation(User user, LecturePath lecturePath) {
-        this.user = user;
-        this.lecturePath = lecturePath;
-    }
 
     public Reservation() {
     }
