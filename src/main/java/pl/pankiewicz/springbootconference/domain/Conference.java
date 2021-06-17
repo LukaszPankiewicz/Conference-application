@@ -10,9 +10,14 @@ import java.util.List;
 public class Conference {
 
     private Long id;
+    private String name;
     private List<Lecture> lecture;
 
     public Conference() {
+    }
+
+    public Conference(String name) {
+        this.name = name;
     }
 
     @Id
@@ -22,8 +27,17 @@ public class Conference {
         return id;
     }
 
+    @Column(name = "NAME")
+    public String getName() {
+        return name;
+    }
+
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @OneToMany(

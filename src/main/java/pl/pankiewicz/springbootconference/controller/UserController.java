@@ -2,12 +2,17 @@ package pl.pankiewicz.springbootconference.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import pl.pankiewicz.springbootconference.domain.LecturePath;
+import pl.pankiewicz.springbootconference.domain.Reservation;
 import pl.pankiewicz.springbootconference.domain.User;
 import pl.pankiewicz.springbootconference.domain.UserDto;
 import pl.pankiewicz.springbootconference.mapper.UserMapper;
+import pl.pankiewicz.springbootconference.repository.LecturePathRepository;
+import pl.pankiewicz.springbootconference.repository.UserRepository;
 import pl.pankiewicz.springbootconference.service.DbService;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/v1/user")
@@ -16,6 +21,8 @@ public class UserController {
 
     private final DbService dbService;
     private final UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final LecturePathRepository lecturePathRepository;
 
     @GetMapping(value = "/users")
     public List<UserDto> getUsers() {
@@ -28,10 +35,29 @@ public class UserController {
         return dbService.getUser(userId).orElseThrow(UserNotFoundException::new);
     }
 
+    @GetMapping(value = "/user/{userId}/lectures")
+    public User getUserLectures(@PathVariable Long userId) throws UserNotFoundException {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        Reservation reservation = user.getReservation();
+        LecturePath lecturePath = reservation.getLecturePath();
+        return
+
+        //metoda musi zwrócić wyżej wypisany lecturePath. -> jak ?
+
+    }
+
     @PostMapping(value = "/user")
     public void createUser(@RequestBody UserDto userDto) {
         User user = userMapper.mapToUser(userDto);
         dbService.saveUser(user);
+    }
+
+    @PostMapping(value = "user/{userId}/lecture/{name}/reservation")
+    public void createReservation(@PathVariable Long userId, String title) throws UserNotFoundException {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        LecturePath lecturePath = lecturePathRepository.findByTitle(title);
+        List<Reservation> reservations = lecturePath.getReservation();
+        reservations.add(user) //błąd, bliźniaczy kod zaczyna się od 78 linii.
     }
 
     @PutMapping(value = "/user")
@@ -42,9 +68,21 @@ public class UserController {
 
     }
 
-    @DeleteMapping(value = "/user/{userId}")
-    public void deleteUser(@PathVariable Long userId) {
-        dbService.deleteUser(userId);
+    @PatchMapping(value = "/user/{userId}/updateEmail")
+    public User updateEmail(@PathVariable Long userId) throws UserNotFoundException {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        user.setEmail("");
+        return user;
+    }
+
+    @DeleteMapping(value = "/user/{userId/lecture/{name}/reservationCancel")
+    public void reservationCancel(@PathVariable Long userId, String title) throws UserNotFoundException {
+        //dbService.deleteUser(userId);
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        LecturePath lecturePath = lecturePathRepository.findByTitle(title);
+        List<Reservation> reservations = lecturePath.getReservation();
+        reservations.remove(user);
+
     }
 }
 
