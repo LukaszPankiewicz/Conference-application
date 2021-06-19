@@ -2,11 +2,8 @@ package pl.pankiewicz.springbootconference.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import pl.pankiewicz.springbootconference.domain.LecturePath;
-import pl.pankiewicz.springbootconference.domain.Reservation;
 import pl.pankiewicz.springbootconference.domain.User;
 import pl.pankiewicz.springbootconference.domain.UserDto;
-import pl.pankiewicz.springbootconference.mapper.LecturePathMapper;
 import pl.pankiewicz.springbootconference.mapper.UserMapper;
 import pl.pankiewicz.springbootconference.repository.LecturePathRepository;
 import pl.pankiewicz.springbootconference.repository.UserRepository;
@@ -14,7 +11,6 @@ import pl.pankiewicz.springbootconference.service.DbService;
 
 import java.util.List;
 
-import static com.fasterxml.jackson.databind.type.LogicalType.Map;
 
 @RestController
 @RequestMapping("/v1/user")
@@ -36,7 +32,7 @@ public class UserController {
     public User getUser(@PathVariable Long userId) throws UserNotFoundException {
         return dbService.getUser(userId).orElseThrow(UserNotFoundException::new);
     }
-
+/*
     @GetMapping(value = "/user/{userId}/reservation")
     public User getUserReservation(@PathVariable Long userId) throws UserNotFoundException {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
@@ -45,15 +41,16 @@ public class UserController {
         return
 
         //metoda musi zwrócić wyżej wypisany lecturePath. Brak pomysłu
-
     }
+
+ */
 
     @PostMapping(value = "/user")
     public void createUser(@RequestBody UserDto userDto) {
         User user = userMapper.mapToUser(userDto);
         dbService.saveUser(user);
     }
-
+/*
     @PostMapping(value = "user/{userId}/lecture/{name}/reservation")
     public void createReservation(@PathVariable Long userId, String title) throws UserNotFoundException {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
@@ -61,6 +58,8 @@ public class UserController {
         List<Reservation> reservations = lecturePath.getReservation();
         reservations.add(user) //błąd, niezgodność typów
     }
+
+    */
 
     @PutMapping(value = "/user")
     public UserDto updateUser(@RequestBody UserDto userDto) {
@@ -76,7 +75,7 @@ public class UserController {
         user.setEmail("");
         return user;
     }
-
+/*
     @DeleteMapping(value = "/user/{userId/lecture/{name}/reservationCancel")
     public void reservationCancel(@PathVariable Long userId, String title) throws UserNotFoundException {
         //dbService.deleteUser(userId);
@@ -85,7 +84,10 @@ public class UserController {
         List<Reservation> reservations = lecturePath.getReservation();
         reservations.remove(user); //niezgodność typów
 
+
     }
+
+ */
 }
 
 

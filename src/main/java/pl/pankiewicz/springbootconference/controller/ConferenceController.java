@@ -19,7 +19,7 @@ import java.util.List;
 public class ConferenceController {
 
     private final ConferenceRepository conferenceRepository;
-
+/*
     @GetMapping(value = "/conference")
     public Conference getConferencePlan(@PathVariable String name) {
 
@@ -28,6 +28,6 @@ public class ConferenceController {
         List<Lecture> lecture = conference.getLecture();
         List<LecturePath> lecturePaths = lecture.getLecturePaths(); //
     }
-
+*/
 
 }
