@@ -6,12 +6,15 @@ import pl.pankiewicz.springbootconference.domain.LecturePath;
 import pl.pankiewicz.springbootconference.domain.Reservation;
 import pl.pankiewicz.springbootconference.domain.User;
 import pl.pankiewicz.springbootconference.domain.UserDto;
+import pl.pankiewicz.springbootconference.mapper.LecturePathMapper;
 import pl.pankiewicz.springbootconference.mapper.UserMapper;
 import pl.pankiewicz.springbootconference.repository.LecturePathRepository;
 import pl.pankiewicz.springbootconference.repository.UserRepository;
 import pl.pankiewicz.springbootconference.service.DbService;
 
 import java.util.List;
+
+import static com.fasterxml.jackson.databind.type.LogicalType.Map;
 
 @RestController
 @RequestMapping("/v1/user")
@@ -26,7 +29,7 @@ public class UserController {
     @GetMapping(value = "/users")
     public List<UserDto> getUsers() {
         List<User> users = dbService.getAllUsers();
-        return userMapper.mapToTaskDtoList(users);
+        return userMapper.mapToUserDtoList(users);
     }
 
     @GetMapping(value = "/users/{userId}")
@@ -34,8 +37,8 @@ public class UserController {
         return dbService.getUser(userId).orElseThrow(UserNotFoundException::new);
     }
 
-    @GetMapping(value = "/user/{userId}/lectures")
-    public User getUserLectures(@PathVariable Long userId) throws UserNotFoundException {
+    @GetMapping(value = "/user/{userId}/reservation")
+    public User getUserReservation(@PathVariable Long userId) throws UserNotFoundException {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         Reservation reservation = user.getReservation();
         LecturePath lecturePath = reservation.getLecturePath();

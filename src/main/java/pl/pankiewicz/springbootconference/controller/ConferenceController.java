@@ -23,7 +23,7 @@ public class ConferenceController {
     @GetMapping(value = "/conference")
     public Conference getConferencePlan(@PathVariable String name) {
 
-        // niezgodność,  błąd   Conference conference = conferenceRepository.findByName(name);
+        Conference conference = conferenceRepository.findByName(name);
 
         List<Lecture> lecture = conference.getLecture();
         List<LecturePath> lecturePaths = lecture.getLecturePaths(); //
