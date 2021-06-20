@@ -27,10 +27,6 @@ public class Reservation {
         return id;
     }
 
-    /*@OneToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-     */
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     public User getUser() {

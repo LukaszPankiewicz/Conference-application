@@ -9,7 +9,6 @@ import pl.pankiewicz.springbootconference.domain.UserDto;
 import pl.pankiewicz.springbootconference.mapper.UserMapper;
 import pl.pankiewicz.springbootconference.repository.LecturePathRepository;
 import pl.pankiewicz.springbootconference.repository.UserRepository;
-import pl.pankiewicz.springbootconference.service.DbService;
 
 import java.util.List;
 
@@ -18,20 +17,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final DbService dbService;
     private final UserMapper userMapper;
     private final UserRepository userRepository;
     private final LecturePathRepository lecturePathRepository;
 
     @GetMapping(value = "/users")
     public List<UserDto> getUsers() {
-        List<User> users = dbService.getAllUsers();
+        List<User> users = userRepository.findAll();
         return userMapper.mapToUserDtoList(users);
     }
 
     @GetMapping(value = "/users/{userId}")
     public User getUser(@PathVariable Long userId) throws UserNotFoundException {
-        return dbService.getUser(userId).orElseThrow(UserNotFoundException::new);
+        return userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
 
     @GetMapping(value = "/user/{userId}/reservation")
@@ -43,7 +41,7 @@ public class UserController {
     @PostMapping(value = "/user")
     public void createUser(@RequestBody UserDto userDto) {
         User user = userMapper.mapToUser(userDto);
-        dbService.saveUser(user);
+        userRepository.save(user);
     }
 
     @PostMapping(value = "user/{userId}/lecture/{name}/reservation")
@@ -51,14 +49,18 @@ public class UserController {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         LecturePath lecturePath = lecturePathRepository.findByTitle(title);
         List<Reservation> reservations = lecturePath.getReservation();
-        Reservation reservation = new Reservation(user, lecturePath );
-        reservations.add(reservation);
+        if (reservations.size() > 5) {
+            System.out.println("There are no more places on this lecture path");
+        } else {
+            Reservation reservation = new Reservation(user, lecturePath);
+            reservations.add(reservation);
+        }
     }
 
     @PutMapping(value = "/user")
     public UserDto updateUser(@RequestBody UserDto userDto) {
         User user = userMapper.mapToUser(userDto);
-        User savedUser = dbService.saveUser(user);
+        User savedUser = userRepository.save(user);
         return userMapper.mapToUserDto(savedUser);
     }
 
