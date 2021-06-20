@@ -15,6 +15,11 @@ public class Reservation {
     public Reservation() {
     }
 
+    public Reservation(User user, LecturePath lecturePath) {
+        this.user = user;
+        this.lecturePath = lecturePath;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull

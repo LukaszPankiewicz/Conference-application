@@ -3,6 +3,7 @@ package pl.pankiewicz.springbootconference.domain;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS")
@@ -11,7 +12,7 @@ public class User {
     private Long id;
     private String username;
     private String email;
-    private Reservation reservation;
+    private List<Reservation> reservationList;
 
     public User(String username, String email) {
         this.username = username;
@@ -37,15 +38,15 @@ public class User {
         return email;
     }
 
-    @OneToOne(
+    @OneToMany(
+            targetEntity = Reservation.class,
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY,
+            mappedBy = "user"
     )
-    @JoinColumn(name = "RESERVATION_ID")
-    public Reservation getReservation() {
-        return reservation;
+    public List<Reservation> getReservationList() {
+        return reservationList;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -58,7 +59,7 @@ public class User {
         this.email = email;
     }
 
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
     }
 }
