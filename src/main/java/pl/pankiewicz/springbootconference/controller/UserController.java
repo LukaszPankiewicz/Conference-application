@@ -33,8 +33,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{userName}/reservation")
-    public UserDto getUserReservation(@PathVariable String userName) throws UserNotFoundException {
-        User user = userRepository.findByName(userName).orElseThrow(UserNotFoundException::new);
+    public UserDto getUserReservation(@PathVariable Long userId) throws UserNotFoundException {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         return userMapper.mapToUserDto(user);
     }
 
