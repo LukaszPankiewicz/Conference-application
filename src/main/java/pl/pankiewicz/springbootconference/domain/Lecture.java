@@ -21,11 +21,12 @@ public class Lecture {
 
     public Lecture() {
     }
-    public Lecture(LocalDate date, LocalTime startTime, LocalTime endTime, String title) {
+    public Lecture(LocalDate date, LocalTime startTime, LocalTime endTime, String title, Conference conference) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.title = title;
+        this.conference = conference;
     }
 
     @Id

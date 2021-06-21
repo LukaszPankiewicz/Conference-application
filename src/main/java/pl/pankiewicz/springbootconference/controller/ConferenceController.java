@@ -21,8 +21,8 @@ public class ConferenceController {
 
     private final ConferenceRepository conferenceRepository;
 
-    @GetMapping(value = "/conference")
-    public Conference getConferencePlan(@PathVariable String name) {
+    @GetMapping(value = "/{name}/plan")
+    public ConferenceDto getConferencePlan(@PathVariable String name) {
         ConferenceDto conferenceDto = new ConferenceDto();
         Conference conference = conferenceRepository.findByName(name);
         List<Lecture> lectures = conference.getLecture();
@@ -32,7 +32,7 @@ public class ConferenceController {
         }
         conferenceDto.setId(conference.getId());
         conferenceDto.setName(conference.getName());
-        return conference;
+        return conferenceDto;
     }
 
 

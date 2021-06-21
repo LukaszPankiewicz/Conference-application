@@ -45,30 +45,30 @@ public class DataLoader implements CommandLineRunner {
         userRepository.save(new User("user14","test14@test.com"));
         userRepository.save(new User("user15","test15test.com"));
 
-        conferenceRepository.save(new Conference("Programming world"));
+        Conference programming_world = conferenceRepository.save(new Conference("Programming world"));
 
         lecturePathRepository.save(new LecturePath("Java"));
         lecturePathRepository.save(new LecturePath("Python"));
         lecturePathRepository.save(new LecturePath("JavaScript"));
 
         lectureRepository.save(new Lecture(LocalDate.of(2021,6,1)
-                , LocalTime.of(10,0), LocalTime.of(11, 45), "Spring"));
+                , LocalTime.of(10,0), LocalTime.of(11, 45), "Spring", programming_world));
         lectureRepository.save(new Lecture(LocalDate.of(2021,6,1)
-                , LocalTime.of(10,0), LocalTime.of(11, 45), "Django"));
+                , LocalTime.of(10,0), LocalTime.of(11, 45), "Django", programming_world));
         lectureRepository.save(new Lecture(LocalDate.of(2021,6,1)
-                , LocalTime.of(10,0), LocalTime.of(11, 45), "Angular"));
+                , LocalTime.of(10,0), LocalTime.of(11, 45), "Angular", programming_world));
         lectureRepository.save(new Lecture(LocalDate.of(2021,6,1)
-                , LocalTime.of(12,0), LocalTime.of(13, 45), "Hibernate"));
+                , LocalTime.of(12,0), LocalTime.of(13, 45), "Hibernate", programming_world));
         lectureRepository.save(new Lecture(LocalDate.of(2021,6,1)
-                , LocalTime.of(12,0), LocalTime.of(13, 45), "Web2py"));
+                , LocalTime.of(12,0), LocalTime.of(13, 45), "Web2py", programming_world));
         lectureRepository.save(new Lecture(LocalDate.of(2021,6,1)
-                , LocalTime.of(12,0), LocalTime.of(13, 45), "React"));
+                , LocalTime.of(12,0), LocalTime.of(13, 45), "React", programming_world));
         lectureRepository.save(new Lecture(LocalDate.of(2021,6,1)
-                , LocalTime.of(14,0), LocalTime.of(15, 45), "Apache"));
+                , LocalTime.of(14,0), LocalTime.of(15, 45), "Apache", programming_world));
         lectureRepository.save(new Lecture(LocalDate.of(2021,6,1)
-                , LocalTime.of(14,0), LocalTime.of(15, 45), "TurboGears"));
+                , LocalTime.of(14,0), LocalTime.of(15, 45), "TurboGears", programming_world));
         lectureRepository.save(new Lecture(LocalDate.of(2021,6,1)
-                , LocalTime.of(14,0), LocalTime.of(15, 45), "Vue.js"));
+                , LocalTime.of(14,0), LocalTime.of(15, 45), "Vue.js", programming_world));
 
     }
 }
