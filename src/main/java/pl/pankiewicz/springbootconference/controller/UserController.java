@@ -32,9 +32,9 @@ public class UserController {
         return userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
 
-    @GetMapping(value = "/user/{userId}/reservation")
-    public UserDto getUserReservation(@PathVariable Long userId) throws UserNotFoundException {
-        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+    @GetMapping(value = "/user/{userName}/reservation")
+    public UserDto getUserReservation(@PathVariable String userName) throws UserNotFoundException {
+        User user = userRepository.findByName(userName).orElseThrow(UserNotFoundException::new);
         return userMapper.mapToUserDto(user);
     }
 
@@ -44,7 +44,7 @@ public class UserController {
         userRepository.save(user);
     }
 
-    @PostMapping(value = "user/{userId}/lecture/{name}/reservation")
+    @PostMapping(value = "user/{userId}/lecture/{title}/reservation")
     public void createReservation(@PathVariable Long userId, String title) throws UserNotFoundException {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         LecturePath lecturePath = lecturePathRepository.findByTitle(title);
@@ -71,7 +71,7 @@ public class UserController {
         return user;
     }
 
-    @DeleteMapping(value = "/user/{userId/lecture/{name}/reservationCancel")
+    @DeleteMapping(value = "/user/{userId/lecture/{title}/reservationCancel")
     public void reservationCancel(@PathVariable Long userId, String title) throws UserNotFoundException {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         LecturePath lecturePath = lecturePathRepository.findByTitle(title);
