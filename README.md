@@ -12,7 +12,9 @@ Main assumptions:
 
   **Access data set in pplication.properties:**
  
-  user: sa password: password
+  user: sa
+  
+  password: password
 
 2. **Demo**
 
