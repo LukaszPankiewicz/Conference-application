@@ -36,11 +36,6 @@ public class UserController {
         return userMapper.mapToUserDto(user);
     }
 
-    @GetMapping(value = "/users/{userId}/reservation")
-    public UserDto getUserReservation(@PathVariable Long userId) throws UserNotFoundException {
-        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-        return userMapper.mapToUserDto(user);
-    }
 
     @PostMapping(value = "/user")
     public void createUser(@RequestBody UserDto userDto) {
@@ -48,7 +43,7 @@ public class UserController {
         userRepository.save(user);
     }
 
-    @PostMapping(value = "users/{userId}/lecture/{title}/reservation")
+    @PostMapping(value = "/users/{userId}/lecture/{title}/reservation")
     public void createReservation(@PathVariable Long userId, @PathVariable String title) throws UserNotFoundException, IOException {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         LecturePath lecturePath = lecturePathRepository.findByTitle(title);
